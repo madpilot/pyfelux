@@ -1,3 +1,5 @@
+import felux
+
 class Device:
     def __init__(self, id, ip_address, host_name, device_name, number_of_leds):
         self._id = id
@@ -6,28 +8,31 @@ class Device:
         self._device_name = device_name
         self._number_of_leds = number_of_leds
 
-        api = API(self.ip_address)
-        self._state = State(api, self.device_name)
+        api = felux.API(self.ip_address)
+        self._state = felux.State(api, self.device_name)
+
+    def __repr__(self):
+        return "Device " + self._id + " {ip_address=" + self._ip_address + ",host_name=" + self._host_name + ",device_name=" + self._device_name + ",leds=" + str(self._number_of_leds)
 
     @property
     def id(self):
-        return _id
+        return self._id
 
     @property
     def ip_address(self):
-        return _ip_address
+        return self._ip_address
 
-    @propery
+    @property
     def host_name(self):
-        return _host_name
+        return self._host_name
 
     @property
     def device_name(self):
-        return _device_name
+        return self._device_name
 
-    @propery
+    @property
     def number_of_leds(self):
-        return _number_of_leds
+        return self._number_of_leds
 
     @property
     def is_on(self):

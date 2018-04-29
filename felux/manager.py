@@ -1,19 +1,21 @@
 class Manager:
     def __init__(self, callback=None):
-        _devices = {}
-        _callback = callback
+        self._devices = []
+        self._callback = callback
 
     def add_device(self, device):
-        _devices = list(filter(lambda d: d.id != device.id))
-        append(_devices, device)
-        callback((:add, device))
+        self._devices = list(filter(lambda d: d.id != device.id, self._devices))
+        self._devices.append(device)
+        if self._callback:
+            self._callback(('add', device))
 
     def remove_device(self, device):
-        _devices = list(filter(lambda d: d != device))
-        callback((:remove, device))
+        self._devices = list(filter(lambda d: d != device, self.devices))
+        if self._callback:
+            self._callback(('remove', device))
 
     @property
     def devices(self):
-        return _devices
+        return self._devices
 
 
