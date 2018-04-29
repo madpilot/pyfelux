@@ -14,6 +14,11 @@ class Manager:
         if self._callback:
             self._callback(('remove', device))
 
+    def update(self, data):
+       decoded = felux.API.decode(data)
+       devices = list(filter(lambda d: d.id == decoded['id']))
+       map(lambda d: d.set_state(decoded), devices)
+
     @property
     def devices(self):
         return self._devices

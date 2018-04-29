@@ -84,3 +84,6 @@ class Device:
 
     def update(self):
         self._state.update()
+
+    def set_state(self, state):
+        self._state.set_state(state)

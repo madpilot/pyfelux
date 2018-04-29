@@ -1,9 +1,9 @@
 import asyncio
 
 class StateUpdater(asyncio.DatagramProtocol):
-    def __init__(self, loop, light):
+    def __init__(self, loop, manager):
         self.loop = loop
-        self.light = light
+        self.manager = manager
         self.future = asyncio.Future();
         self.transport = None
 
@@ -11,7 +11,7 @@ class StateUpdater(asyncio.DatagramProtocol):
         self.transport = transport
 
     def datagram_received(self, data, addr):
-        self.light.set_state(data)
+        self.manager.update(data)
 
         if self.future and not self.future.done():
             self.future.set_result(None)

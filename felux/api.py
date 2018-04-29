@@ -89,7 +89,8 @@ class API:
     def __pack(self, number):
         return round(number)
 
-    def decode(self, packet):
+    @staticmethod
+    def decode(packet):
         if len(packet) == 12 and packet[0] == API.MAGIC and packet[1] == 0xF0:
             return {
                 "id" : int.from_bytes(packet[2:6], byteorder='little', signed=False),

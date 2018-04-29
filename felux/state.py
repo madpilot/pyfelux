@@ -73,11 +73,9 @@ class State:
     def update(self):
         self._light.get_state()
 
-    def set_state(self, packet):
-        decoded = self._light.decode(packet)
-
-        if decoded != None:
-            self._hue = decoded["hue"]
-            self._saturation = decoded["saturation"]
-            self._value = decoded["value"]
-            self._brightness = decoded["brightness"]
+    def set_state(self, state):
+        if state != None:
+            self._hue = state["hue"]
+            self._saturation = state["saturation"]
+            self._value = state["value"]
+            self._brightness = state["brightness"]
