@@ -35,7 +35,7 @@ class Manager:
             # Need to convert this id to the hex representation
             future = self._futures[id]
             future.set_result(decoded)
-            self._futures = list(filter(lambda f: f == future, self._futures))
+            del self._futures[id]
 
     def wait_for_response(self, device, loop):
         id = str(device.id)
