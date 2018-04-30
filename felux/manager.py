@@ -30,17 +30,19 @@ class Manager:
         devices = list(filter(lambda d: d.id == decoded['id'], self._devices))
         map(lambda d: d.set_state(decoded), devices)
 
-        if decoded['id'] in self._futures:
+        id = str(decoded['id'])
+        if id in self._futures:
             # Need to convert this id to the hex representation
-            future = self._futures[decoded['id']]
+            future = self._futures[id]
             future.set_result(decoded)
             self._futures = list(filter(lambda f: f == future, self._futures))
 
     def wait_for_response(self, device, loop):
-        if not (device.id in self._futures):
-            self._futures[device.id] = loop.create_future()
+        id = str(device.id)
+        if not (id in self._futures):
+            self._futures[id] = loop.create_future()
 
-        return self._futures[device.id]
+        return self._futures[id]
 
     @property
     def devices(self):
