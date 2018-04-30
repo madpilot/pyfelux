@@ -4,7 +4,7 @@ class StateUpdater(asyncio.DatagramProtocol):
     def __init__(self, loop, manager):
         self.loop = loop
         self.manager = manager
-        relf.transport = None
+        self.transport = None
 
     def connection_made(self, transport):
         self.transport = transport

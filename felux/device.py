@@ -21,7 +21,7 @@ class Device:
         self._state.update_light(api)
 
     def __repr__(self):
-        return "Device " + self._id + " {ip_address=" + self._ip_address + ",host_name=" + self._host_name + ",device_name=" + self._device_name + ",leds=" + str(self._number_of_leds)
+        return "Device " + str(self._id) + " {ip_address=" + self._ip_address + ",host_name=" + self._host_name + ",device_name=" + self._device_name + ",leds=" + str(self._number_of_leds)
 
     @property
     def id(self):
@@ -45,7 +45,7 @@ class Device:
 
     @property
     def is_on(self):
-        return self_state.is_on
+        return self._state.is_on
 
     @property
     def brightness(self):
