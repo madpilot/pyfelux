@@ -8,6 +8,9 @@ class State:
         self._brightness = 0
         self._on = False
 
+    def update_light(self, light):
+        self._light = light
+
     @property
     def name(self):
         return self._name

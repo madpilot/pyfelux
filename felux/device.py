@@ -11,6 +11,15 @@ class Device:
         api = felux.API(self.ip_address)
         self._state = felux.State(api, self.device_name)
 
+    def copy(self, device):
+        self._ip_address = device.ip_address
+        self._host_name = device.host_name
+        self._device_name = device.device_name
+        self._number_of_leds = device.number_of_leds
+
+        api = felux.API(self.ip_address)
+        self._state.update_light(api)
+
     def __repr__(self):
         return "Device " + self._id + " {ip_address=" + self._ip_address + ",host_name=" + self._host_name + ",device_name=" + self._device_name + ",leds=" + str(self._number_of_leds)
 
